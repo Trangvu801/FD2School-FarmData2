@@ -61,6 +61,13 @@ function fd2_school_menu() {
   );
 
   // Add items blocks for new sub-tabs here.
+  $items['farm/fd2-school/html'] = array(
+    'title' => 'HTML',
+    'type' => MENU_LOCAL_TASK,
+    'page arguments' => array('html'),
+    'page callback' => 'fd2_school_view', 
+    'weight' => -90,
+  );
 
   return $items;
 };
