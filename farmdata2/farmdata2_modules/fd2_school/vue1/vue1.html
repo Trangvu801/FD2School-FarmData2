@@ -13,36 +13,42 @@
     </style>
 </head>
 <body>
-    <div id="Harvest">
+    
+    <div id="app">
         <h1>{{header}}</h1>
         <div id="Harvest" v-cloak> ... </div>
     </div>
     <script src="https://unpkg.com/vue@2"></script>
     <script>
         var harvestRepo = new Vue({
-            el:'#Harvest',
+            el:'#app',
             data:{
-                header:"Harvest Report"
+                header:"Harvest Report",
+                startDate: "05/04/2020",
+                endDate: "05/15/2020",
+                selectedCrop: "Kale",
             },
     });
     </script>
+    
+   
     <p>This page is a <i>mockup</i> of a simplified harvest report.</p>
     <input type="text" id="title" name="title" value="My Sample Harvest Report"/>
     <br><br>
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date" name="start-date" min="2014-01-01" max="2022-01-01" v-model="startDate">
 
-    <label for="start-date">Start Date:</label>
-    <input type="date" id="start-date" name="start-date" min="2014-01-01" max="2022-01-01" value="2020-05-05">
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date" name="end-date" min="2020-05-05" max="2022-01-01" v-model="endDate">
+        <br><br>
 
-    <label for="end-date">End Date:</label>
-    <input type="date" id="end-date" name="end-date" min="2020-05-05" max="2022-01-01" value="2020-05-15">
-    <br><br>
-
-    <label for="crop">Crop:</label>
-    <select id="crop" name="crop">
-    <option value="Broccoli">Broccoli</option>
-    <option value="Kale" selected>Kale</option>
-    <option value="Peas">Peas</option>
-    </select>
+        <label for="crop">Crop:</label>
+        <select id="crop" name="crop">
+        <option value="Broccoli">Broccoli</option>
+        <option value="Kale" selected>Kale</option>
+        <option value="Peas">Peas</option>
+        </select>
+   
 
     <label for="field">Area:</label>
     <select id="field" name="field">
@@ -69,30 +75,29 @@
         <li><strong>Crop:</strong>Kale</li>
     </ul>
 </body>
-<table border="1">
-    <tr>
-        <th>Date</th>
-        <th>Area</th>
-        <th>Crop</th>
-        <th>Yield</th>
-        <th>Units</th>
-    </tr>
-    <tr>
-        <td>05/02/2018</td>
-        <td>Chuau-1</td>
-        <td>Kale</td>
-        <td>10</td>
-        <td>Bunches</td>
-    </tr>
-    <tr>
-        <td>05/05/2018</td>
-        <td>SQ7</td>
-        <td>Kale</td>
-        <td>7</td>
-        <td>Bunches</td>
-    </tr>
-</table>
-
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Area</th>
+            <th>Crop</th>
+            <th>Yield</th>
+            <th>Units</th>
+        </tr>
+        <tr>
+            <td>05/02/2018</td>
+            <td>Chuau-1</td>
+            <td>Kale</td>
+            <td>10</td>ß
+            <td>Bunches</td>
+        </tr>
+        <tr>
+            <td>05/05/2018</td>
+            <td>SQ7</td>
+            <td>Kale</td>
+            <td>7</td>
+            <td>Bunches</td>
+        </tr>
+    </table>
 </body>
 <script>
 function generateReport(){
