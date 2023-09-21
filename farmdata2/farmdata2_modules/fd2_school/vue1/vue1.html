@@ -4,10 +4,28 @@
 =======
 >>>>>>> main
 <head>
-    <title>HTML Sub tab</title>
+    <meta charset="UTF-8">
+    <title>vue Sub tab</title>
+    <style>
+        [v-cloak] {
+            display:none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Harvest Report</h1>
+    <div id="Harvest">
+        <h1>{{header}}</h1>
+        <div id="Harvest" v-cloak> ... </div>
+    </div>
+    <script src="https://unpkg.com/vue@2"></script>
+    <script>
+        var harvestRepo = new Vue({
+            el:'#Harvest',
+            data:{
+                header:"Harvest Report"
+            },
+    });
+    </script>
     <p>This page is a <i>mockup</i> of a simplified harvest report.</p>
     <input type="text" id="title" name="title" value="My Sample Harvest Report"/>
     <br><br>
@@ -36,6 +54,7 @@
 
     <button id="generate-report" onclick="generateReport()">Generate Report</button>
     <hr>
+    
     <h1>My Sample Harvest Report</h1>
     <p>Details:</p>
     <ul>
@@ -88,18 +107,7 @@ In this code, I added an HTML table with table headers (Date, Crop, Weight (lbs)
 Now, you can stage and commit these changes to your feature branch with a meaningful commit message and then push your feature branch to your origin. After that, you can convert your Draft Pull Request to a regular Pull Request on GitHub for review.
 
 
-
-
-
-
-<script>
-    function generateReport(){
-        alert ('Report generated');
-    }
-</script>
 =======
-<body>
-    <p>Trang Vu!</p>
-</body>
+
 >>>>>>> main
 </html>
