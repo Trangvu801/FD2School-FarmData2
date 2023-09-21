@@ -26,7 +26,8 @@
                 title: "Harvest Report",
                 startDate: "05/04/2020",
                 endDate: "05/15/2020",
-                selectedCrop: "Kale",
+                crops: ["Broccoli", "Kale", "Peas"],
+                areas: ["All", "Chuau-1", "SQ7"],
             },
     });
     </script>
@@ -43,18 +44,14 @@
         <br><br>
 
         <label for="crop">Crop:</label>
-        <select id="crop" name="crop">
-        <option value="Broccoli">Broccoli</option>
-        <option value="Kale" selected>Kale</option>
-        <option value="Peas">Peas</option>
+        <select id="crop" name="crop" v-model="selectedCrop">
+            <option v-for="crop in crops" :value="crop">{{ crop }}</option>
         </select>
    
 
     <label for="field">Area:</label>
     <select id="field" name="field">
-    <option value="All" selected>All</option>
-    <option value="Chuau-1">Chuau-1</option>
-    <option value="SQ7">SQ7</option>
+        <option v-for="area in areas" :value="area">{{ area }}</option>
     </select>
     <br><br>
 

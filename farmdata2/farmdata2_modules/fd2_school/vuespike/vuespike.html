@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Vue Data Binding Spike</title>
-        <title>HTML Sub tab</title>
-        <style>
-            [v-cloak] {
-                display:none;
-            }
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Data Binding Spike</title>
+    <style>
+        [v-cloak] {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="heading">
         <h1>{{ header.toLocaleUpperCase() }}</h1>
-        <h1>{{ header ? header : ‘Vue is Ready’ }}</h1>
-
-        <div id="heading">
-            <h1>{{header}}</h1>
-            <input type="text" v-model="header">
-            <div id="heading" v-cloak> ... </div>
-        </div>
-        <script src="https://unpkg.com/vue@2"></script>
-        <script>
-            var vueHeading = new Vue({
-                el:'#heading',
-                data:{
-                    header:"Vue is ready to use!"
-                }
-            });
-    </body>
+        <h1>{{ header ? header : 'Vue is Ready' }}</h1>
+        <h1>{{ header }}</h1>
+        <input type="text" v-model="header">
+        <ul>
+            <li v-for="name in names">{{ name }}</li>
+        </ul>
+    </div>
+    
+    <script src="https://unpkg.com/vue@2"></script>
+    <script>
+        var vueHeading = new Vue({
+            el: '#heading',
+            data: {
+                header: "Vue is ready to use!",
+                names: ["Joe", "Arun", "Ouwen", "Anh", "Sue"],
+            }
+        });
+    </script>
+</body>
 </html>
