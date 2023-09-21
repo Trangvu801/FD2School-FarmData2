@@ -1,76 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <<<<<<< HEAD
-=======
->>>>>>> main
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue Sub tab</title>
     <style>
         [v-cloak] {
             display:none;
         }
     </style>
+     <script src="https://unpkg.com/vue@2"></script>
 </head>
 <body>
-    
     <div id="app">
-        <h1>{{ title ? title : "Mock Harvest Report" }}</h1>
-        <div id="Harvest" v-cloak> ... </div>
+        <h1>{{ header }}</h1>
+
+        <p>This page is a <i>mockup</i> of a simplified harvest report.</p>
+    <input type="text" id="title" name="title" value="My Sample Harvest Report"/>
+    <br><br>
+
+    <form>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" min="2014-01-01" max="2022-01-01" v-model="startDate">
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" min="2020-05-05" max="2022-01-01" v-model="endDate">
+        <br><br>
+
+        <label for="crop">Crops:</label>
+        <select id="crop" name="crop" v-model="selectedCrop">
+            <option value="Broccoli">Broccoli</option>
+            <option value="Kale" selected>Kale</option>
+            <option value="Peas">Peas</option>
+        </select>
+        <label for="field">Area:</label>
+        <select id="field" name="field">
+            <option value="All" selected>All</option>
+            <option value="Chuau-1">Chuau-1</option>
+            <option value="SQ7">SQ7</option>
+        </select>
+    </form>
+
+    <hr>
+    <div>
+        <h1>My Sample Harvest Report</h1>
+        <p>Details:</p>
+        <ul>
+            <li><strong>Farm:</strong>Sample Farm</li>
+            <li><strong>User:</strong>manager1</li>
+            <li><strong>Language:</strong>English</li>
+        </ul>
+        <br>
+        <ul>
+            <li><strong>Start:</strong>{{ startDate }}</li>
+            <li><strong>End:</strong>{{ endDate }}</li>
+            <li><strong>Crop:</strong>{{ selectedCrop }}</li>
+        </ul>
     </div>
-    <script src="https://unpkg.com/vue@2"></script>
+</div>
     <script>
         var harvestRepo = new Vue({
             el:'#app',
             data:{
-                title: "Harvest Report",
-                startDate: "05/04/2020",
-                endDate: "05/15/2020",
-                crops: ["Broccoli", "Kale", "Peas"],
-                areas: ["All", "Chuau-1", "SQ7"],
+                header: "Harvest Report",
+                startDate: '',
+                endDate: '',
+                selectedCrop: '',
             },
     });
     </script>
     
-   
-    <p>This page is a <i>mockup</i> of a simplified harvest report.</p>
-    <input type="text" id="title" name="title" value="My Sample Harvest Report"/>
-    <br><br>
-        <label for="start-date">Start Date:</label>
-        <input type="date" id="start-date" name="start-date" min="2014-01-01" max="2022-01-01" v-model="startDate">
-
-        <label for="end-date">End Date:</label>
-        <input type="date" id="end-date" name="end-date" min="2020-05-05" max="2022-01-01" v-model="endDate">
-        <br><br>
-
-        <label for="crop">Crop:</label>
-        <select id="crop" name="crop" v-model="selectedCrop">
-            <option v-for="crop in crops" :value="crop">{{ crop }}</option>
-        </select>
-   
-
-    <label for="field">Area:</label>
-    <select id="field" name="field">
-        <option v-for="area in areas" :value="area">{{ area }}</option>
-    </select>
-    <br><br>
-
-    <button id="generate-report" onclick="generateReport()">Generate Report</button>
-    <hr>
-    
-    <h1>My Sample Harvest Report</h1>
-    <p>Details:</p>
-    <ul>
-        <li><strong>Farm:</strong>Sample Farm</li>
-        <li><strong>User:</strong>manager1</li>
-        <li><strong>Language:</strong>English</li>
-    </ul>
-    <br>
-    <ul>
-        <li><strong>Start:</strong>05/01/2018</li>
-        <li><strong>End:</strong>05/15/2018</li>
-        <li><strong>Crop:</strong>Kale</li>
-    </ul>
 </body>
     <table border="1">
         <tr>
@@ -84,7 +85,7 @@
             <td>05/02/2018</td>
             <td>Chuau-1</td>
             <td>Kale</td>
-            <td>10</td>ß
+            <td>10</td>
             <td>Bunches</td>
         </tr>
         <tr>

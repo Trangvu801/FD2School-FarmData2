@@ -27,8 +27,18 @@
             data: {
                 header: "Vue is ready to use!",
                 names: ["Joe", "Arun", "Ouwen", "Anh", "Sue"],
+                cards: [
+                    { suit: "H", rank: "3" },
+                    { suit: "S", rank: "K" },
+                    { suit: "D", rank: "7" }
+                ]
             }
         });
     </script>
+    <p>Cards:</p>
+    <ul>
+        <li v-for="c in cards">{{ c.suit }}</li>
+        <li v-for="c in cards">{{ c.rank }} of {{ c.suit }}</li>
+    </ul>   
 </body>
 </html>

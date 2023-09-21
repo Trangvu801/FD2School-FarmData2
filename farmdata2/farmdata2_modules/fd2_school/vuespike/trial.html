@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js Form Binding</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Report</h1>
+    <form>
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" v-model="startDate"><br>
+
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" v-model="endDate"><br>
+
+      <label for="crop">Select Crop:</label>
+      <select id="crop" v-model="selectedCrop">
+        <option value="crop1">Crop 1</option>
+        <option value="crop2">Crop 2</option>
+        <!-- Add more crop options as needed -->
+      </select>
+    </form>
+
+    <div>
+      <h2>Report:</h2>
+      <p>Start Date: {{ startDate }}</p>
+      <p>End Date: {{ endDate }}</p>
+      <p>Selected Crop: {{ selectedCrop }}</p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        startDate: '',      // Bind the start date to this property
+        endDate: '',        // Bind the end date to this property
+        selectedCrop: ''    // Bind the selected crop to this property
+      }
+    });
+  </script>
+</body>
+</html>
