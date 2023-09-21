@@ -11,6 +11,9 @@
         </style>
     </head>
     <body>
+        <h1>{{ header.toLocaleUpperCase() }}</h1>
+        <h1>{{ header ? header : ‘Vue is Ready’ }}</h1>
+
         <div id="heading">
             <h1>{{header}}</h1>
             <input type="text" v-model="header">

@@ -15,7 +15,7 @@
 <body>
     
     <div id="app">
-        <h1>{{header}}</h1>
+        <h1>{{ title ? title : "Mock Harvest Report" }}</h1>
         <div id="Harvest" v-cloak> ... </div>
     </div>
     <script src="https://unpkg.com/vue@2"></script>
@@ -23,7 +23,7 @@
         var harvestRepo = new Vue({
             el:'#app',
             data:{
-                header:"Harvest Report",
+                title: "Harvest Report",
                 startDate: "05/04/2020",
                 endDate: "05/15/2020",
                 selectedCrop: "Kale",
