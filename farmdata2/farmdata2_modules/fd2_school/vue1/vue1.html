@@ -31,15 +31,11 @@
 
         <label for="crop">Crops:</label>
         <select id="crop" name="crop" v-model="selectedCrop">
-            <option value="Broccoli">Broccoli</option>
-            <option value="Kale" selected>Kale</option>
-            <option value="Peas">Peas</option>
+            <option v-for="crop in crops" :value="crop">{{ crop }}</option>
         </select>
-        <label for="field">Area:</label>
-        <select id="field" name="field">
-            <option value="All" selected>All</option>
-            <option value="Chuau-1">Chuau-1</option>
-            <option value="SQ7">SQ7</option>
+        <label for="area">Area:</label>
+        <select id="area" name="area" v-model="selectedArea">
+            <option v-for="area in areas" :value="area">{{ area }}</option>
         </select>
     </form>
 
@@ -58,6 +54,22 @@
             <li><strong>End:</strong>{{ endDate }}</li>
             <li><strong>Crop:</strong>{{ selectedCrop }}</li>
         </ul>
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Area</th>
+                <th>Crop</th>
+                <th>Yield</th>
+                <th>Units</th>
+            </tr>
+            <tr v-for="harvestLog in harvestLogs" :key="harvestLog.date">
+                <td>{{ harvestLog.date }}</td>
+                <td>{{ harvestLog.area }}</td>
+                <td>{{ harvestLog.crop }}</td>
+                <td>{{ harvestLog.yield }}</td>
+                <td>{{ harvestLog.units }}</td>
+              </tr>
+        </table>
     </div>
 </div>
     <script>
@@ -68,35 +80,17 @@
                 startDate: '',
                 endDate: '',
                 selectedCrop: '',
+                selectedArea: '',
+                crops: ['Broccoli','Kale','Peas'],
+                areas: ['All','Chuau-1','SQ7'],
+                harvestLogs: [
+            { date: '2018-05-02', area: 'Chuau-1', crop: 'Kale', yield: 10, units: 'Bunches' },
+            { date: '2018-05-05', area: 'Sq7', crop: 'Kale', yield: 7, units: 'Bunches' }
+          ],
             },
     });
+    Vue.config.devtools = true;
     </script>
-    
-</body>
-    <table border="1">
-        <tr>
-            <th>Date</th>
-            <th>Area</th>
-            <th>Crop</th>
-            <th>Yield</th>
-            <th>Units</th>
-        </tr>
-        <tr>
-            <td>05/02/2018</td>
-            <td>Chuau-1</td>
-            <td>Kale</td>
-            <td>10</td>
-            <td>Bunches</td>
-        </tr>
-        <tr>
-            <td>05/05/2018</td>
-            <td>SQ7</td>
-            <td>Kale</td>
-            <td>7</td>
-            <td>Bunches</td>
-        </tr>
-    </table>
-</body>
 <script>
 function generateReport(){
     alert ('Report generated');
