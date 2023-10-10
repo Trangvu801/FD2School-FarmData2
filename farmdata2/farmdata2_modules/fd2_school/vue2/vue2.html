@@ -54,7 +54,7 @@
                 <li><strong>End:</strong>{{ endDate }}</li>
                 <li><strong>Crop:</strong>{{ selectedCrop }}</li>
             </ul>
-            <table border="1">
+            <table border="1" v-if="harvestLogs.length > 0">
                 <tr>
                     <th>Row</th>
                     <th>Date</th>
@@ -76,6 +76,7 @@
                     </td>
                 </tr>
             </table>
+            <p v-else>No recorded data found.</p>
         </div>
     </div>
 
