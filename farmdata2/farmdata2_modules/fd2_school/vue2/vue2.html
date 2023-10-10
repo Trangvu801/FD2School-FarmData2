@@ -38,6 +38,7 @@
             <option v-for="area in areas" :value="area">{{ area }}</option>
         </select>
     </form>
+    <button @click="generateReport">Generate Report</button>
 
     <hr>
     <div>
@@ -72,6 +73,7 @@
         </table>
     </div>
 </div>
+
     <script>
         var harvestRepo = new Vue({
             el:'#app',
@@ -88,6 +90,20 @@
             { date: '2018-05-05', area: 'Sq7', crop: 'Kale', yield: 7, units: 'Bunches' }
           ],
             },
+            methods: {
+        generateReport: function() {
+           
+            var newHarvestLog = {
+                date: '2021-08-20', 
+                area: 'SQ7',    
+                crop: 'Brocoli', 
+                yield: 20,          
+                units: 'Pounds'     
+            };
+
+            this.harvestLogs.push(newHarvestLog);
+        }
+    }
     });
     
     Vue.config.devtools = true;
