@@ -22,10 +22,10 @@
 
         <form>
             <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" min="2014-01-01" max="2022-01-01" v-model="startDate">
+            <input type="date" id="startDate" :max="endDate" v-model="startDate">
 
             <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" min="2020-05-05" max="2022-01-01" v-model="endDate">
+            <input type="date" id="endDate" :min="startDate" v-model="endDate">
             <br><br>
 
             <label for="crop">Crops:</label>
