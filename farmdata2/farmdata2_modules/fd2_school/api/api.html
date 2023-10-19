@@ -29,7 +29,7 @@
 
             <label for="crop">Crops:</label>
             <select id="crop" name="crop" v-model="selectedCrop">
-                <option v-for="crop in crops" :value="crop">{{ crop }}</option>
+                <option v-for="crop in crops" :value="crop.id">{{ crop.name }}</option>
             </select>
             <label for="area">Area:</label>
             <select id="area" name="area" v-model="selectedArea">
@@ -67,7 +67,7 @@
                     <td>{{ index + 1 }}</td>
                     <td>{{ log.date }}</td>
                     <td>{{ log.area }}</td>
-                    <td>{{ log.crop }}</td>
+                    <td>{{ getCropName(log.crop) }}</td>
                     <td>{{ log.yield }}</td>
                     <td>{{ log.units }}</td>
                     <td>
@@ -81,6 +81,22 @@
 
     <script>
         var harvestRepo = new Vue({
+            created() {
+                console.log("HarvestReport Vue instance created!");
+                getCropToIDMap()
+                    .then((theMap) => {
+                        this.idToCropMap = theMap;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching crops");
+                    })
+            },
+                computed: {
+                    cropNamesArray (){
+                        return Array.from(this.idToCropMap.keys())
+                    },
+                },
+
             el: '#app',
             data: {
                 header: "Harvest Report",
@@ -88,41 +104,46 @@
                 endDate: '',
                 selectedCrop: '',
                 selectedArea: '',
-                crops: ['Broccoli', 'Kale', 'Peas'],
+                // crops: [],
                 areas: ['All', 'Chuau-1', 'SQ7'],
                 farmName: '',
                 userName: '',
                 userLanguage: '',
                 harvestLogs: [],
+                idToCropMap: new Map(),
             },
+
             methods: {
                 generateReport: function() {
                     axios.get('/farm.json')
                         .then(function (response) {
-                            
+
                             this.farmName = response.data.name;
                             this.userName = response.data.user.name;
                             this.userLanguage = response.data.user.language;
 
-                            var newHarvestLog = {
-                                date: '2021-08-20', 
-                                area: 'SQ7',    
-                                crop: 'Broccoli', 
-                                yield: 20,          
-                                units: 'Pounds'     
-                            };
+                            // var newHarvestLog = {
+                            //     date: '2021-08-20',
+                            //     area: 'SQ7',
+                            //     crop: 'Broccoli', // Use crop ID here
+                            //     yield: 20,
+                            //     units: 'Pounds'
+                            // };
 
-                            // this.harvestLogs.push(newHarvestLog);
+                            this.harvestLogs.push(newHarvestLog);
                         })
                         .catch(function (error){
                             console.log("Error Occurred");
                             console.log(error);
                         });
                 },
-                // deleteLog: function(index) {
-                //     // Remove the log at the given index
-                //     this.harvestLogs.splice(index, 1);
-                // }
+                deleteLog: function(index) {
+                    // Remove the log at the given index
+                    this.harvestLogs.splice(index, 1);
+                },
+                getCropName: function(cropId) {
+                    return this.idToCropMap.get(cropId) || 'Unknown Crop';
+                }
             }
         });
 
