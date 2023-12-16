@@ -46,9 +46,9 @@
             <h1> data-cy="title">{{reportTitle==""?"Mock Harvest Report":reportTitle}}</h1> 
             <p>Details:</p>
             <ul>
-                <li><strong>Farm:</strong>{{farmName}}</li>
-                <li><strong>User:</strong>{{userName}}</li>
-                <li><strong>Language:</strong>{{userLanguage}}</li>
+                <li data-cy="farm-name"><b>Farm:</b>{{farm}}</li>
+                <li data-cy="username"><b>User:</b>{{user}}</li>
+                <li><b>Language:</b><span data-cy="language">{{ language }}</span>
             </ul>
             <br>
             <ul>

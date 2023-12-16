@@ -4,27 +4,17 @@ describe("Test the harvest report default values", () => {
         cy.visit("/farm/fd2-school/e2e")
     })
 
-    it("Check the page header", () => {
-        cy.get("[data-cy=page-header]")
-            .should("have.text","Harvest Report")
+    it("Check generate report button", () => {
+        cy.get("[data-cy=generate-button]")
+        cy.get("[data-cy=title]").not.exist
+        cy.get("[data-cy=generate-button]").click()
+        cy.get("[data-cy=title]").should("be.visible")
     })
-
-    it("Check start and end dates", () => {
-        cy.get("[data-cy=start-date]")
-            .should("have.value","2020-05-05")
-        cy.get("[data-cy=end-date]")
-            .should("have.value","2020-05-15")
-    })
-
-    it("Check crop value", () => {
-        cy.get("[data-cy=select-crop]").children()
-            .should("have.length",111)
-        cy.get("[data-cy=select-crop]").children().eq(0)
-            .should("have.value","ASPARAGUS")
-        cy.get("[data-cy=select-crop]").children().eq(4)
-            .should("have.value","BEAN-FAVA")
-        cy.get("[data-cy=select-crop]").children().eq(110)
-            .should("have.value","ZUCCHINI")
-
+    it("Check names", () => {
+        cy.get("[data-cy=generate-button]")
+        cy.get("[data-cy=generate-button]").click()
+        cy.get("[data-cy=farm-name]").should("have.text","Farm:Sample Farm")
+        cy.get("[data-cy=username]").should("contain.text","manager1")
+        cy.get("[data-cy=language]").should("have.text","English")
     })
 })
