@@ -39,11 +39,11 @@
             </select>
             <br>
             <br>
-            <input type="button" value="Generate Report" v-on:click="generateReport"/>
+            <input type="button" value="Generate Report" data-cy="generate-button" v-on:click="generateReport"/>
 
         <hr>
         <div>
-            <h1>{{ header ? header : "Mock Harvest Report" }}</h1>
+            <h1> data-cy="title">{{reportTitle==""?"Mock Harvest Report":reportTitle}}</h1> 
             <p>Details:</p>
             <ul>
                 <li><strong>Farm:</strong>{{farmName}}</li>
@@ -82,7 +82,7 @@
         var harvestRepo = new Vue({
             el: '#report',
             data: {
-                reportTitle: "My Sample Harvest Report",
+                reportTitle: "",
                 startDate: '',
                 endDate: '',
                 selectedCrop: 'Kale',
