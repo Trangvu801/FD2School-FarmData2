@@ -23,9 +23,9 @@
         <br><br>
         
         <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" :max="endDate" v-model="startDate">
+        <input type="date" id="startDate" :max="endDate" v-model="startDate" data-cy="start-date">
         <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" :min="startDate" v-model="endDate">
+        <input type="date" id="endDate" :min="startDate" v-model="endDate" data-cy="end-date">
         <br>
         <br>
 
