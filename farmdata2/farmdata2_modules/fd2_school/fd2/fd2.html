@@ -30,9 +30,10 @@
         <br>
 
         <label for="crops">Crops:</label>
-         <select id="crops" name="crops" v-model="selectedCrop" data-cy="select-crop">
-            <option v-for="crop in crops">{{crop}}</option>
-            </select>
+        <UL>
+
+            <dropdown-with-all id="crops" name="crops" v-model="selectedCrop" data-cy="select-crop" includes-all :selected-val="reportCrop" :dropdown-list=crops @selection-changed="cropChange"></dropdown-with-all>
+        </UL>
             <label for="area">Area:</label>
             <select id="area" name="area" v-model="selectedArea">
                 <option v-for="area in areas">{{area}}</option>
@@ -85,7 +86,7 @@
                 reportTitle: "",
                 startDate: '',
                 endDate: '',
-                selectedCrop: 'Kale',
+                selectedCrop: 'All',
                 selectedArea: '',
                 crops: [],
                 areas: ['All', 'Chuau-1', 'SQ7'],
@@ -95,6 +96,11 @@
                 idToCropMap: new Map(),
                 harvestLogs: [],
                 datedLogs: [],
+            },
+
+
+            components: {
+                'dropdown-with-all': DropdownWithAllComponent,
             },
 
             created() {
@@ -110,6 +116,9 @@
             },
 
             methods: {
+                cropChange(newCrop) {
+                    this.reportCrop = newCrop
+                },
                 generateReport: function() {
                     this.harvestLogs.push({ date:"2020-05-05", area:"Orion-3", crop:"Peas", yield:"12", unit:"Bunches"});
                     axios.get('/farm.json')
