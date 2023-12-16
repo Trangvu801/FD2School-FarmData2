@@ -30,7 +30,7 @@
         <br>
 
         <label for="crops">Crops:</label>
-         <select id="crops" name="crops" v-model="selectedCrop">
+         <select id="crops" name="crops" v-model="selectedCrop" data-cy="select-crop">
             <option v-for="crop in crops">{{crop}}</option>
             </select>
             <label for="area">Area:</label>
